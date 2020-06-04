@@ -28,7 +28,7 @@ class PokemonCard extends React.Component {
       })
       .then((data) => {
         const pokemonCard = data.cards.find((card) => {
-          return card.setCode === 'base1' && card.supertype === "Pokémon";
+          return card.setCode === 'base1' && card.supertype === "Pokémon" && card.name !== "Hitmonchan";
         });
         if (pokemonCard) {
           this.setState(() => ({ pokemonCard, error: '' }));
@@ -70,7 +70,7 @@ class PokemonCard extends React.Component {
               </div>
               <div className='right-header'>
                 <span className='HP'>{this.state.pokemonCard.hp} HP</span>
-                <Energy type={this.state.pokemonCard.types[0]} />
+                <Energy size='40' type={this.state.pokemonCard.types[0]} />
               </div>
             </div>
             <div className='image-container'>
@@ -78,58 +78,66 @@ class PokemonCard extends React.Component {
             </div>
             <div className='moves-section'>
               { this.state.pokemonCard.ability && 
-                <div className='ability'>
-                  <span className='ability-name'>
-                    {this.state.pokemonCard.ability.type}: 
-                    {this.state.pokemonCard.ability.name}
-                  </span>
-                  <span className='ability-text'> {this.state.pokemonCard.ability.text}</span>
-                </div>
+                <>
+                  <div className='ability'>
+                    <span className='ability-name'>
+                      {this.state.pokemonCard.ability.type}: 
+                      {this.state.pokemonCard.ability.name}
+                    </span>
+                    <span className='ability-text'> {this.state.pokemonCard.ability.text}</span>
+                  </div>
+                  <div className='moves-border'></div> 
+                </>
               }
               <div className='moves'>
                 { this.state.pokemonCard.attacks.map((attack) => {
                   return (
-                    <div className='move'>
-                      <div className='move-costs'>
-                        {attack.cost.map((cost) => {
-                          return (
-                            <span className={cost}>
-                              {cost[0]}
+                    <>
+                      <div className='move'>
+                        <div className='move-costs'>
+                          {attack.cost.map((cost) => {
+                            return (
+                              <Energy size='30' type={cost} />
+                            );
+                          })}
+                        </div>
+                        <div className='move-text'>
+                          {attack.text ? 
+                            <>
+                              <span className='move-name'>
+                                {attack.name + ' '} 
+                              </span>
+                              <span className='move-desc'>
+                                {attack.text}
+                              </span>
+                            </>
+                            : 
+                            <span className='move-name-large'>
+                              {attack.name + ' '} 
                             </span>
-                          );
-                        })}
+                          }
+                        </div>
+                        <div className='move-dmg'>
+                          {attack.damage}
+                        </div>
                       </div>
-                      <div className='move-text'>
-                        <span className='move-name'>
-                          {attack.name} 
-                        </span>
-                        <span className='move-desc'>
-                          {attack.text}
-                        </span>
-                      </div>
-                      <div className='move-dmg'>
-                        {attack.damage}
-                      </div>
-                    </div>
+                      <div className='moves-border'></div> 
+                    </>
                   );
                 })}
               </div>
               <div className='footer'>
                 <div className='weaknesses'>
+                  <div className='footer-title'>weakness</div>
                   {this.state.pokemonCard.weaknesses &&
-                    <div className='weaknesses-energy'>
-                      <span className={this.state.pokemonCard.weaknesses[0].type}>
-                        {this.state.pokemonCard.weaknesses[0].type[0]}
-                      </span>
-                    </div>
+                    <Energy size='35' type={this.state.pokemonCard.weaknesses[0].type} />
                   }
                 </div>
                 <div className='resistance'>
+                  <div className='footer-title'>resistance</div>
                   {this.state.pokemonCard.resistances &&
                     <div className='resistance-energy'>
-                      <span className={this.state.pokemonCard.resistances[0].type}>
-                        {this.state.pokemonCard.resistances[0].type[0]}
-                      </span>
+                      <Energy size='35' type={this.state.pokemonCard.resistances[0].type} />
                       <span>
                         {this.state.pokemonCard.resistances[0].value}
                       </span>
@@ -137,9 +145,10 @@ class PokemonCard extends React.Component {
                   }
                 </div>
                 <div className='retreat'>
+                  <div className='footer-title'>retreat cost</div>
                   {this.state.pokemonCard.retreatCost &&
                     this.state.pokemonCard.retreatCost.map((cost) => {
-                      return (<span className={cost}>{cost[0]}</span>);
+                      return (<Energy type={cost} size='35'/>);
                     })}
                 </div>
               </div>

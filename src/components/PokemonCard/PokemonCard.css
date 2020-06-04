@@ -31,6 +31,7 @@
   margin: auto;
   border: var(--border-color) 15px solid;
   border-radius: 10px;
+  filter: drop-shadow(8px 8px 10px black);
 }
 
 /* Energy Dictionary */
@@ -87,6 +88,7 @@
   margin: 0 auto;
   height: 350px;
   border:  var(--border-color) 10px solid;
+  filter: drop-shadow(8px 8px 10px black);
 }
 
 .image-main {
@@ -95,12 +97,84 @@
   left: -60px;
 }
 
+.moves-section {
+  margin-top: 10px;
+}
+
 .ability {
-  padding: 25px 50px 0 50px;
+  padding: 0 50px 0 50px;
 }
 
 .ability-name {
   font-size: 23px;
   font-weight: bolder;
   color: var(--red-text-color);
+}
+
+.moves-border {
+  width: 95%;
+  margin: 5px auto 0 auto;
+  border-bottom: 2px black solid;
+}
+
+.move {
+  display: flex;
+  padding: 0 2.5%;
+}
+
+.move-costs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 12%;
+}
+
+.move-text {
+  width: 76%;
+  margin: auto;
+  text-align: center;
+}
+
+.move-dmg {
+  width: 12%;
+}
+
+.move-name {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.move-name-large {
+  font-size: 37px;
+  font-weight: 900;
+}
+
+.move-dmg {
+  width: 12%;
+  font-size: 40px;
+  margin: auto;
+}
+
+.footer {
+  display: flex;
+}
+
+.weaknesses {
+  width: 33%;
+}
+
+.resistance {
+  width: 33%;
+}
+
+.retreat {
+  width: 33%;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer-title {
+  font-weight: 700;
 }
