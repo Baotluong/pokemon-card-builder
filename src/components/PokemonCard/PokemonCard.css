@@ -1,40 +1,14 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  margin: 0;
-  background-color: darkslategray;
-  --border-color:  rgb(206, 161, 12);
-  --red-text-color: rgb(201, 37, 37);
-}
-
-.input-section {
-  margin: auto;
-}
-
-.input-input {
-  height: 30px;
-  color: black;
-}
-
-.input-button {
-  height: 30px;
-  background-color: whitesmoke;
-}
-
 .entire-card {
   width: 600px;
   height: 800px;
   margin: auto;
+  margin-bottom: 50px;
   border: var(--border-color) 15px solid;
   border-radius: 10px;
   filter: drop-shadow(8px 8px 10px black);
 }
 
-/* Energy Dictionary */
+/* Type Background Dictionary */
 .entire-card.water {
   background-color: cornflowerblue;
 }
@@ -63,39 +37,7 @@
   background-color: rgb(226, 228, 115);
 }
 
-.header {
-  height: 12%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 35px;
-  font-size: 35px;
-  font-weight: 900;
-  font-family: arial;
-}
 
-.left-header, .right-header {
-  margin-top: auto;
-}
-
-.right-header {
-  color: var(--red-text-color);
-}
-
-.image-container {
-  width: 500px;
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
-  height: 350px;
-  border:  var(--border-color) 10px solid;
-  filter: drop-shadow(8px 8px 10px black);
-}
-
-.image-main {
-  top: -95px;
-  position: relative;
-  left: -60px;
-}
 
 .moves-section {
   margin-top: 10px;
@@ -157,6 +99,10 @@
 
 .footer {
   display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
 }
 
 .weaknesses {

@@ -1,0 +1,17 @@
+.header {
+  height: 12%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 35px;
+  font-size: 35px;
+  font-weight: 900;
+  font-family: arial;
+}
+
+.left-header, .right-header {
+  margin-top: auto;
+}
+
+.right-header {
+  color: var(--red-text-color);
+}

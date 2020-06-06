@@ -1,0 +1,15 @@
+.image-section {
+  width: 500px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  height: 350px;
+  border:  var(--border-color) 10px solid;
+  filter: drop-shadow(8px 8px 10px black);
+}
+
+.image-main {
+  top: -95px;
+  position: relative;
+  left: -60px;
+}

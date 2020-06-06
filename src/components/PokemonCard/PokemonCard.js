@@ -1,6 +1,9 @@
 import React from 'react';
 import './PokemonCard.css';
 import Energy from '../Energy/Energy';
+import InputSection from '../InputSection/InputSection';
+import Header from '../Header/Header';
+import ImageSection from '../ImageSection/ImageSection';
 
 class PokemonCard extends React.Component {
   constructor(props) {
@@ -28,10 +31,10 @@ class PokemonCard extends React.Component {
       })
       .then((data) => {
         const pokemonCard = data.cards.find((card) => {
-          return card.setCode === 'base1' && card.supertype === "Pokémon" && card.name !== "Hitmonchan";
+          return card.setCode === 'base1' && card.supertype === "Pokémon";
         });
         if (pokemonCard) {
-          this.setState(() => ({ pokemonCard, error: '' }));
+          this.setState(() => ({ pokemonCard, error: '', input: '' }));
         } else {
           this.setState(() => ({ error: 'The pokemon you entered does not have a card!' }));
         }
@@ -45,37 +48,22 @@ class PokemonCard extends React.Component {
   render() {
     return (
       <div>
-        <div className='input-section'>
-          <div className='error'>{this.state.error}</div>
-          <input
-            className='input-input'
-            onChange={this.handleChange}
-            type='text'
-            value={this.state.input}
-          />
-          <button
-            className='input-button'
-            onClick={this.handleClick}
-            disabled={!this.state.input}
-          >
-            Does the thing
-          </button>
-        </div>
-        
+        <InputSection
+          error={this.state.error}
+          handleChange={this.handleChange}
+          value={this.state.input}
+          handleClick={this.handleClick}
+        />
         { this.state.pokemonCard &&
           <div className={'entire-card' + ` ${this.state.pokemonCard.types[0].toLowerCase()}`}>
-            <div className='header'>
-              <div className='left-header'>
-                {this.state.pokemonCard.name}
-              </div>
-              <div className='right-header'>
-                <span className='HP'>{this.state.pokemonCard.hp} HP</span>
-                <Energy size='40' type={this.state.pokemonCard.types[0]} />
-              </div>
-            </div>
-            <div className='image-container'>
-              <img className='image-main' src={this.state.pokemonCard.imageUrlHiRes} />
-            </div>
+            <Header
+              name={this.state.pokemonCard.name}
+              hp={this.state.pokemonCard.hp}
+              type={this.state.pokemonCard.types[0]}
+            />
+            <ImageSection
+              imageUrl={this.state.pokemonCard.imageUrlHiRes}
+            />
             <div className='moves-section'>
               { this.state.pokemonCard.ability && 
                 <>
@@ -90,7 +78,7 @@ class PokemonCard extends React.Component {
                 </>
               }
               <div className='moves'>
-                { this.state.pokemonCard.attacks.map((attack) => {
+                { this.state.pokemonCard.attacks.map((attack, index) => {
                   return (
                     <>
                       <div className='move'>
@@ -121,36 +109,40 @@ class PokemonCard extends React.Component {
                           {attack.damage}
                         </div>
                       </div>
-                      <div className='moves-border'></div> 
+                      {
+                        index < this.state.pokemonCard.attacks.length - 1 &&
+                        <div className='moves-border'></div> 
+                      }
                     </>
                   );
                 })}
               </div>
-              <div className='footer'>
-                <div className='weaknesses'>
-                  <div className='footer-title'>weakness</div>
-                  {this.state.pokemonCard.weaknesses &&
-                    <Energy size='35' type={this.state.pokemonCard.weaknesses[0].type} />
-                  }
-                </div>
-                <div className='resistance'>
-                  <div className='footer-title'>resistance</div>
-                  {this.state.pokemonCard.resistances &&
-                    <div className='resistance-energy'>
-                      <Energy size='35' type={this.state.pokemonCard.resistances[0].type} />
-                      <span>
-                        {this.state.pokemonCard.resistances[0].value}
-                      </span>
-                    </div>
-                  }
-                </div>
-                <div className='retreat'>
-                  <div className='footer-title'>retreat cost</div>
-                  {this.state.pokemonCard.retreatCost &&
-                    this.state.pokemonCard.retreatCost.map((cost) => {
-                      return (<Energy type={cost} size='35'/>);
-                    })}
-                </div>
+            </div>
+          <div className='footer'>
+              <div className='moves-border'></div>  
+              <div className='weaknesses'>
+                <div className='footer-title'>weakness</div>
+                {this.state.pokemonCard.weaknesses &&
+                  <Energy size='35' type={this.state.pokemonCard.weaknesses[0].type} />
+                }
+              </div>
+              <div className='resistance'>
+                <div className='footer-title'>resistance</div>
+                {this.state.pokemonCard.resistances &&
+                  <div className='resistance-energy'>
+                    <Energy size='35' type={this.state.pokemonCard.resistances[0].type} />
+                    <span>
+                      {this.state.pokemonCard.resistances[0].value}
+                    </span>
+                  </div>
+                }
+              </div>
+              <div className='retreat'>
+                <div className='footer-title'>retreat cost</div>
+                {this.state.pokemonCard.retreatCost &&
+                  this.state.pokemonCard.retreatCost.map((cost) => {
+                    return (<Energy type={cost} size='35'/>);
+                  })}
               </div>
             </div>
           </div>
