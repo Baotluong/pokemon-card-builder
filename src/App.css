@@ -7,6 +7,7 @@
 :root {
   margin: 0;
   background: lemonchiffon;
-  --border-color:  rgb(206, 161, 12);
-  --red-text-color: rgb(201, 37, 37);
+  --outer-border-color: #f5d021;
+  --border-color: #edcb44;
+  --red-text-color: #d9041a;
 }

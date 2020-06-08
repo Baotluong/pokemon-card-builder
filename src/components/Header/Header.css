@@ -1,17 +1,21 @@
 .header {
-  height: 12%;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   padding: 0 35px;
-  font-size: 35px;
-  font-weight: 900;
-  font-family: arial;
 }
 
-.left-header, .right-header {
+.left-header {
   margin-top: auto;
+  font-size: 40px;
+  font-weight: 900;
+  font-family: serif;
 }
 
 .right-header {
+  margin-top: auto;
+  font-weight: 300;
+  font-size: 35px;
+  font-family: arial;
   color: var(--red-text-color);
 }

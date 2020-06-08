@@ -10,7 +10,7 @@ const Header = (props) => {
       </div>
       <div className='right-header'>
         <span className='HP'>{props.hp} HP</span>
-        <Energy size='40' type={props.type} />
+        <Energy size='50' type={props.type} />
       </div>
     </div>
   );

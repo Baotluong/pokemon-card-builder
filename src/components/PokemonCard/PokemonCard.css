@@ -1,28 +1,36 @@
 .entire-card {
   width: 600px;
-  height: 800px;
+  height: 825px;
   margin: auto;
   margin-bottom: 50px;
-  border: var(--border-color) 15px solid;
+  border: var(--outer-border-color) 15px solid;
   border-radius: 10px;
   filter: drop-shadow(8px 8px 10px black);
 }
 
+img.noise {
+  width: 570px;
+  height: 795px;
+  position: absolute;
+  opacity: 45%;
+  z-index: -1;
+}
+
 /* Type Background Dictionary */
 .entire-card.water {
-  background-color: cornflowerblue;
+  background-color: #1a70e7;
 }
 
 .entire-card.grass {
-  background-color: rgb(48, 174, 52);
+  background-color: #b6df4d;
 }
 
 .entire-card.fire {
-  background-color: rgb(227, 92, 92);
+  background-color: #f85502;
 }
 
 .entire-card.fighting {
-  background-color: rgb(145, 97, 55);
+  background-color: #bf7312;
 }
 
 .entire-card.psychic {
@@ -34,13 +42,14 @@
 }
 
 .entire-card.lightning {
-  background-color: rgb(226, 228, 115);
+  background-color: #fde100;
 }
 
-
-
 .moves-section {
-  margin-top: 10px;
+  height: 210px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
 }
 
 .ability {
@@ -61,6 +70,7 @@
 
 .move {
   display: flex;
+  width: 100%;
   padding: 0 2.5%;
 }
 
@@ -69,12 +79,14 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 12%;
+  align-content: center;
 }
 
 .move-text {
   width: 76%;
   margin: auto;
-  text-align: center;
+  text-align: left;
+  padding: 0 5px;
 }
 
 .move-dmg {
@@ -89,6 +101,7 @@
 .move-name-large {
   font-size: 37px;
   font-weight: 900;
+  text-align: center;
 }
 
 .move-dmg {
@@ -97,20 +110,20 @@
   margin: auto;
 }
 
-.footer {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-}
-
 .weaknesses {
   width: 33%;
 }
 
 .resistance {
+  position: relative;
   width: 33%;
+}
+
+.resistance-dmg {
+  position: absolute;
+  bottom: 8px;
+  right: 46px;
+  font-weight: 700;
 }
 
 .retreat {
@@ -119,8 +132,32 @@
 
 .footer {
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .footer-title {
   font-weight: 700;
+}
+
+.flavor-text {
+  font-weight: 700;
+  border: 3px var(--border-color) solid;
+  margin: 5px auto;
+  padding: 2px 5px;
+  width: 90%;
+  text-align: left;
+}
+
+.bottom-stuff {
+  font-size: 11px;
+  width: 100%;
+  padding: 0 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-stuff-bold {
+  font-weight: 800;
 }
