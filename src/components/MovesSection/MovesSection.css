@@ -1,0 +1,12 @@
+.moves-section {
+  height: 210px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+}
+
+.moves-border {
+  width: 95%;
+  margin: 5px auto 0 auto;
+  border-bottom: 2px black solid;
+}

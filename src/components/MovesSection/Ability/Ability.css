@@ -1,0 +1,9 @@
+.ability {
+  padding: 0 50px 0 50px;
+}
+
+.ability-name {
+  font-size: 23px;
+  font-weight: bolder;
+  color: var(--red-text-color);
+}
