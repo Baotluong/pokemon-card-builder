@@ -1,6 +1,7 @@
 import React from 'react';
 import Energy from '../../Energy/Energy';
 import './Moves.css';
+import ConvertedText from '../../ConvertedText';
 
 const Moves = (props) => {
   return (
@@ -23,7 +24,7 @@ const Moves = (props) => {
                       {attack.name + ' '}
                     </span>
                     <span className='move-desc'>
-                      {attack.text}
+                      {ConvertedText(attack.text, props.type)}
                     </span>
                   </>
                   :

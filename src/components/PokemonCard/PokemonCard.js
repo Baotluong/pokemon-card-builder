@@ -1,6 +1,5 @@
 import React from 'react';
 import './PokemonCard.css';
-import Energy from '../Energy/Energy';
 import InputSection from '../InputSection/InputSection';
 import Header from '../Header/Header';
 import ImageSection from '../ImageSection/ImageSection';
@@ -58,8 +57,8 @@ class PokemonCard extends React.Component {
           handleClick={this.handleClick}
         />
         {this.state.pokemonCard &&
-          <div className={'entire-card' + ` ${this.state.pokemonCard.types[0].toLowerCase()}`}>
-            <img className='noise' src={Noise} />
+          <div className={`entire-card ${this.state.pokemonCard.types[0].toLowerCase()}`}>
+            <img className='noise' src={Noise} alt='noise'/>
             <Header
               name={this.state.pokemonCard.name}
               hp={this.state.pokemonCard.hp}
@@ -72,6 +71,7 @@ class PokemonCard extends React.Component {
             <MovesSection
               ability={this.state.pokemonCard.ability}
               attacks={this.state.pokemonCard.attacks}
+              type={this.state.pokemonCard.types[0]}
             />
             <Footer
               weaknesses={this.state.pokemonCard.weaknesses}
