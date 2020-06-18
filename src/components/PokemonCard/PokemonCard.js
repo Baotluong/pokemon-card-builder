@@ -1,92 +1,42 @@
 import React from 'react';
 import './PokemonCard.css';
-import InputSection from '../InputSection/InputSection';
 import Header from '../Header/Header';
 import ImageSection from '../ImageSection/ImageSection';
 import Noise from '../../images/noise.png';
 import MovesSection from '../MovesSection/MovesSection';
 import Footer from '../Footer/Footer';
 
-class PokemonCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      input: '',
-      pokemonCard: '',
-      error: '',
-    };
-  }
-
-  handleChange = event => {
-    const input = event.target.value;
-    this.setState(() => ({ input }));
-  }
-
-  handleClick = () => {
-    if (!this.state.input) {
-      this.setState(() => ({ error: 'You didnt enter anything!' }));
-      return;
-    }
-    fetch(`https://api.pokemontcg.io/v1/cards?name=${this.state.input}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const pokemonCard = data.cards.find((card) => {
-          return card.setCode === 'base1' && card.supertype === "Pokémon";
-        });
-        if (pokemonCard) {
-          this.setState(() => ({ pokemonCard, error: '', input: '' }));
-        } else {
-          this.setState(() => ({ error: 'The pokemon you entered does not have a card!' }));
-        }
-      })
-      .catch((error) => {
-        this.setState(() => ({ error: 'Something went wrong!' }));
-        console.log(error);
-      });
-  }
-
-  render() {
-    return (
-      <div>
-        <InputSection
-          error={this.state.error}
-          handleChange={this.handleChange}
-          value={this.state.input}
-          handleClick={this.handleClick}
+const PokemonCard = (props) => {
+  return (
+    <>
+      <div className={`entire-card ${props.pokemonCard.types[0].toLowerCase()}`}>
+        <img className='noise' src={Noise} alt='noise'/>
+        <Header
+          name={props.pokemonCard.name}
+          hp={props.pokemonCard.hp}
+          type={props.pokemonCard.types[0]}
         />
-        {this.state.pokemonCard &&
-          <div className={`entire-card ${this.state.pokemonCard.types[0].toLowerCase()}`}>
-            <img className='noise' src={Noise} alt='noise'/>
-            <Header
-              name={this.state.pokemonCard.name}
-              hp={this.state.pokemonCard.hp}
-              type={this.state.pokemonCard.types[0]}
-            />
-            <ImageSection
-              imageUrl={this.state.pokemonCard.imageUrlHiRes}
-              pokemon={this.state.pokemonCard.name}
-            />
-            <MovesSection
-              ability={this.state.pokemonCard.ability}
-              attacks={this.state.pokemonCard.attacks}
-              type={this.state.pokemonCard.types[0]}
-            />
-            <Footer
-              weaknesses={this.state.pokemonCard.weaknesses}
-              resistances={this.state.pokemonCard.resistances}
-              retreatCost={this.state.pokemonCard.retreatCost}
-              nationalPokedexNumber={this.state.pokemonCard.nationalPokedexNumber}
-              artist={this.state.pokemonCard.artist}
-              number={this.state.pokemonCard.number}
-              rarity={this.state.pokemonCard.rarity}
-            />
-          </div>
-        }
+        <ImageSection
+          imageUrl={props.pokemonCard.imageUrlHiRes}
+          pokemon={props.pokemonCard.name}
+        />
+        <MovesSection
+          ability={props.pokemonCard.ability}
+          attacks={props.pokemonCard.attacks}
+          type={props.pokemonCard.types[0]}
+        />
+        <Footer
+          weaknesses={props.pokemonCard.weaknesses}
+          resistances={props.pokemonCard.resistances}
+          retreatCost={props.pokemonCard.retreatCost}
+          nationalPokedexNumber={props.pokemonCard.nationalPokedexNumber}
+          artist={props.pokemonCard.artist}
+          number={props.pokemonCard.number}
+          rarity={props.pokemonCard.rarity}
+        />
       </div>
-    );
-  }
+    </>
+  );
 }
 
 export default PokemonCard;

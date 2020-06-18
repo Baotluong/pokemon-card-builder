@@ -9,8 +9,7 @@ const Ability = (props) => {
         <>
           <div className='ability'>
             <span className='ability-name'>
-              {props.ability.type}:
-              {props.ability.name}
+              {`${props.ability.type}: ${props.ability.name}`}
             </span>
             <span className='ability-text'> {ConvertedText(props.ability.text)}</span>
           </div>
